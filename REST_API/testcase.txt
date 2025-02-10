@@ -1,0 +1,28 @@
+ID : 1 
+Name:  Отримання існуючого pet за ID
+Precondition: У базі є pet з id=123 
+Request: GET {{baseURL}}/pet/123 
+Expected result: 200 OK, JSON-об'єкт pet з ID 123 
+Test result: passed 
+
+ID : 2 
+Name: Запит із від'ємним ID 
+Precondition:  id=-1
+Request: GET {{baseURL}}/pet/-1 
+Expected result: 400 Bad Request, {"error": "Invalid ID"} 
+Test result: passed 
+
+ID : 3 
+Name: Перевірка часу відповіді 
+Precondition: Тест швидкодії 
+Request: GET {{baseURL}}/pet/123 
+Expected result: response_time < 500ms 
+Test result: passed
+
+ID : 4 
+Name: Запит неіснуючого pet 
+Precondition: id=99999 не існує
+Request: GET {{baseURL}}/pet/99999 
+Expected result: 404 Not Found, {"message": "Pet not found"} 
+Test result: passed
+
